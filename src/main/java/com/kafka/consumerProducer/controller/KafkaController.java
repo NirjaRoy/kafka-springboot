@@ -5,15 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/kafka")
 public class KafkaController {
 
     @Autowired
     Producer producer;
 
-    @PostMapping(value="/post")
-    public void SendMessgae(@RequestParam("message") String message){
-        producer.publishToTopic(message);
+    @PostMapping(value="/topic1")
+    public void SendMessgae1(@RequestParam("message") String message){
+        producer.publishToTopic1(message);
     }
 
+    @PostMapping(value="/topic2")
+    public void SendMessgae2(@RequestParam("message") String message){
+        producer.publishToTopic2WithCallback(message);
+    }
 }
+
+
